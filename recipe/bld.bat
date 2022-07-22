@@ -6,7 +6,7 @@ cargo build --release -p polar-c-api
 
 cd %SRC_DIR%/languages/python/oso
 
-make build 
+make build
 
 cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
 
