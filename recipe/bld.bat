@@ -1,10 +1,12 @@
 @echo on
 
+set OSO_ENV=RELEASE
+
 cargo build --release -p polar-c-api
 
 cd %SRC_DIR%/languages/python/oso
 
-make build OSO_ENV=RELEASE
+make build 
 
 cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
 
