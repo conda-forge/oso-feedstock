@@ -1,6 +1,8 @@
 @echo on
 
-cargo build -p polar-c-api
+set OSO_ENV=RELEASE
+
+cargo build --release -p polar-c-api
 
 cd %SRC_DIR%/languages/python/oso
 

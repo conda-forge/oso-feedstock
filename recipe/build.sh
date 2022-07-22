@@ -2,11 +2,11 @@
 
 set -eux
 
-cargo build -p polar-c-api
+cargo build --release -p polar-c-api
 
 cd $SRC_DIR/languages/python/oso
 
-make build
+make build OSO_ENV=RELEASE
 
 cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
 
