@@ -50,6 +50,7 @@ test:
     - pip
     - pytest-cov
     - ruamel_yaml
+    - sqlalchemy
 
 about:
   home: https://github.com/osohq/oso
