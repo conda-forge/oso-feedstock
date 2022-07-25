@@ -11,7 +11,7 @@ Summary: Oso is a batteries-included framework for building authorization in you
 
 Development: https://github.com/osohq/oso
 
-Documentation: https://docs.osohq.com/
+Documentation: https://docs.osohq.com
 
 Current build status
 ====================
