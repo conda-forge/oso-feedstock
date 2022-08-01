@@ -1,5 +1,6 @@
-{% set version = "0.26.1" %}
-{% set build_number = 3 %}
+{% set min_rust = "rust >=1.46" %}
+{% set version = "0.26.2" %}
+{% set build_number = 0 %}
 {% set min_rust = "rust >=1.46" %}
 
 package:
@@ -8,7 +9,7 @@ package:
 
 source:
   url: https://github.com/osohq/oso/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 412b62ca46b649cd2b0ddfd9027180eeda9aa8d4f059da44978fa56ac103e90a
+  sha256: 0df339b5b5b3938360ed84b512eb1ad1af7e9288bcea32161417bb3770ab66cb
 
 build:
   number: {{ build_number }}
