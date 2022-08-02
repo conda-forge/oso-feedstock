@@ -1,6 +1,6 @@
 {% set min_rust = "rust >=1.46" %}
 {% set version = "0.26.2" %}
-{% set build_number = 0 %}
+{% set build_number = 1 %}
 {% set min_rust = "rust >=1.46" %}
 
 package:
