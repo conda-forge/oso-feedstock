@@ -1,4 +1,6 @@
 {% set version = "0.26.3" %}
+# from languages/python/oso/Makefile
+{% set cffi_version_from_makefile = ">=1.15,<2" %}
 
 package:
   name: oso
@@ -7,6 +9,8 @@ package:
 source:
   url: https://github.com/osohq/oso/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 53ee9fff6f8addcc797f5d9584eb951d91b785bc65d7d87875b41bb4773914d4
+  patches:
+    - 0000-no-pip-install-makefile.patch
 
 build:
   number: 0
@@ -29,10 +33,10 @@ requirements:
     - openssl
     - python
     - pip
-    - cffi >=1.0.0
+    - cffi {{ cffi_version_from_makefile }}
   run:
     - python
-    - cffi >=1.0.0
+    - cffi {{ cffi_version_from_makefile }}
 
 test:
   source_files:
@@ -42,8 +46,7 @@ test:
     - polar
   commands:
     - pip check
-    - cd languages/python/oso
-    - pytest -vv tests --cov=oso --cov=polar --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=84 -k "not test_parser_errors and not test_repr_when_logging"
+    - pytest languages/python/oso -vv --cov=oso --cov=polar --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=84 -k "not test_parser_errors and not test_repr_when_logging"
   requires:
     - pip
     - pytest-cov
