@@ -1,7 +1,4 @@
-{% set min_rust = "rust >=1.46" %}
 {% set version = "0.26.3" %}
-{% set build_number = 0 %}
-{% set min_rust = "rust >=1.46" %}
 
 package:
   name: oso
@@ -12,7 +9,7 @@ source:
   sha256: 53ee9fff6f8addcc797f5d9584eb951d91b785bc65d7d87875b41bb4773914d4
 
 build:
-  number: {{ build_number }}
+  number: 0
 
 requirements:
   build:
@@ -24,7 +21,7 @@ requirements:
     - clangdev                               # [not osx and build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ min_rust }}
+    - rust >=1.46
     - cargo-bundle-licenses
   host:
     - make
