@@ -1,7 +1,6 @@
-{% set min_rust = "rust >=1.46" %}
-{% set version = "0.26.2" %}
-{% set build_number = 0 %}
-{% set min_rust = "rust >=1.46" %}
+{% set version = "0.26.3" %}
+# from languages/python/oso/Makefile
+{% set cffi_version_from_makefile = ">=1.15,<2" %}
 
 package:
   name: oso
@@ -9,10 +8,12 @@ package:
 
 source:
   url: https://github.com/osohq/oso/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 0df339b5b5b3938360ed84b512eb1ad1af7e9288bcea32161417bb3770ab66cb
+  sha256: 53ee9fff6f8addcc797f5d9584eb951d91b785bc65d7d87875b41bb4773914d4
+  patches:
+    - 0000-no-pip-install-makefile.patch
 
 build:
-  number: {{ build_number }}
+  number: 0
 
 requirements:
   build:
@@ -24,7 +25,7 @@ requirements:
     - clangdev                               # [not osx and build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ min_rust }}
+    - rust >=1.46
     - cargo-bundle-licenses
   host:
     - make
@@ -32,10 +33,10 @@ requirements:
     - openssl
     - python
     - pip
-    - cffi >=1.0.0
+    - cffi {{ cffi_version_from_makefile }}
   run:
     - python
-    - cffi >=1.0.0
+    - cffi {{ cffi_version_from_makefile }}
 
 test:
   source_files:
@@ -45,8 +46,8 @@ test:
     - polar
   commands:
     - pip check
-    - cd languages/python/oso
-    - pytest -vv tests --cov=oso --cov=polar --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=84 -k "not test_parser_errors and not test_repr_when_logging"
+    # must be run from this folder because of hard-coded paths in tests
+    - cd languages/python/oso && pytest tests -vv --cov=oso --cov=polar --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=84 -k "not test_parser_errors and not test_repr_when_logging"
   requires:
     - pip
     - pytest-cov

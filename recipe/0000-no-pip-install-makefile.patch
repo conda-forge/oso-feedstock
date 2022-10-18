@@ -1,0 +1,11 @@
+--- languages/python/oso/Makefile	2022-10-17 17:16:00.031963239 -0500
++++ languages/python/oso/Makefile	2022-10-17 17:16:58.155914082 -0500
+@@ -2,7 +2,8 @@
+ build:
+ 	rm -rf build
+ 	rm -f _polar_lib.abi3.so
+-	pip install -r requirements.txt
++	# conda-forge: we've already installed these
++	# pip install -r requirements.txt
+ 	python setup.py build
+ 	python setup.py develop
