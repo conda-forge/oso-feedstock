@@ -11,8 +11,8 @@ jobs:
       win_64_openssl1.1.1python3.10.____cpython:
         CONFIG: win_64_openssl1.1.1python3.10.____cpython
         UPLOAD_PACKAGES: 'True'
-      win_64_openssl1.1.1python3.7.____cpython:
-        CONFIG: win_64_openssl1.1.1python3.7.____cpython
+      win_64_openssl1.1.1python3.11.____cpython:
+        CONFIG: win_64_openssl1.1.1python3.11.____cpython
         UPLOAD_PACKAGES: 'True'
       win_64_openssl1.1.1python3.8.____cpython:
         CONFIG: win_64_openssl1.1.1python3.8.____cpython
@@ -23,8 +23,8 @@ jobs:
       win_64_openssl3python3.10.____cpython:
         CONFIG: win_64_openssl3python3.10.____cpython
         UPLOAD_PACKAGES: 'True'
-      win_64_openssl3python3.7.____cpython:
-        CONFIG: win_64_openssl3python3.7.____cpython
+      win_64_openssl3python3.11.____cpython:
+        CONFIG: win_64_openssl3python3.11.____cpython
         UPLOAD_PACKAGES: 'True'
       win_64_openssl3python3.8.____cpython:
         CONFIG: win_64_openssl3python3.8.____cpython
@@ -56,7 +56,7 @@ jobs:
 
     - script: |
         call activate base
-        mamba.exe install 'python=3.9' conda-build conda pip boa 'conda-forge-ci-setup=3' -c conda-forge --strict-channel-priority --yes
+        mamba.exe install 'python=3.9' conda-build conda pip boa 'liblief=0.11.5 conda-forge-ci-setup=3' -c conda-forge --strict-channel-priority --yes
       displayName: Install conda-build
 
     - script: set PYTHONUNBUFFERED=1
