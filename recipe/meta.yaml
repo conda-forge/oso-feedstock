@@ -1,4 +1,5 @@
-{% set version = "0.26.3" %}
+{% set cffi_version_from_makefile = ">=1.15,<2" %}
+{% set version = "0.26.4" %}
 # from languages/python/oso/Makefile
 {% set cffi_version_from_makefile = ">=1.15,<2" %}
 
@@ -8,7 +9,7 @@ package:
 
 source:
   url: https://github.com/osohq/oso/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 53ee9fff6f8addcc797f5d9584eb951d91b785bc65d7d87875b41bb4773914d4
+  sha256: 61e86bed11a7653aceac40213f95304e2b65630fc0568b195a437fc77e732e91
   patches:
     - 0000-no-pip-install-makefile.patch
 
