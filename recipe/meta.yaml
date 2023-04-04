@@ -1,7 +1,6 @@
-{% set cffi_version_from_makefile = ">=1.15,<2" %}
-{% set version = "0.26.4" %}
-# from languages/python/oso/Makefile
-{% set cffi_version_from_makefile = ">=1.15,<2" %}
+{% set version = "0.27.0" %}
+# from languages/python/oso/requirements.txt
+{% set cffi_version = "cffi >=1.15,<2" %}
 
 package:
   name: oso
@@ -9,17 +8,17 @@ package:
 
 source:
   url: https://github.com/osohq/oso/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 61e86bed11a7653aceac40213f95304e2b65630fc0568b195a437fc77e732e91
+  sha256: 85043ccf7ef893c46ef33cfbc126b62fe52d9abb8bc5c2021910c68a96259942
   patches:
     - 0000-no-pip-install-makefile.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [aarch64 or ppc64le]
 
 requirements:
   build:
-    - cffi                                   # [build_platform != target_platform]
+    - {{ cffi_version }}                     # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - make                                   # [build_platform != target_platform]
     - openssl                                # [build_platform != target_platform]
@@ -27,6 +26,7 @@ requirements:
     - clangdev                               # [not osx and build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    # from README.md
     - rust >=1.46
     - cargo-bundle-licenses
   host:
@@ -35,10 +35,10 @@ requirements:
     - openssl
     - python
     - pip
-    - cffi {{ cffi_version_from_makefile }}
+    - {{ cffi_version }}
   run:
     - python
-    - cffi {{ cffi_version_from_makefile }}
+    - {{ cffi_version }}
 
 test:
   source_files:
@@ -48,9 +48,13 @@ test:
     - polar
   commands:
     - pip check
+    - mypy -p oso --ignore-missing-imports
+    # %PREFIX%\lib\site-packages\polar\build.py:19: error: Need type annotation for "libs" (hint: "libs: List[<type>] = ...")  [var-annotated]
+    - mypy -p polar --ignore-missing-imports  # [not win]
     # must be run from this folder because of hard-coded paths in tests
-    - cd languages/python/oso && pytest tests -vv --cov=oso --cov=polar --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=84 -k "not test_parser_errors and not test_repr_when_logging"
+    - cd languages/python/oso && pytest tests -vv --cov=oso --cov=polar --no-cov-on-fail --cov-report=term-missing:skip-covered -k "not test_parser_errors and not test_repr_when_logging" --cov-fail-under=86
   requires:
+    - mypy
     - pip
     - pytest-cov
     - ruamel_yaml
