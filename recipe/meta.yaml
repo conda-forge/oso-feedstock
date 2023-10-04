@@ -13,7 +13,7 @@ source:
     - 0000-no-pip-install-makefile.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [aarch64 or ppc64le]
 
 requirements:
@@ -26,8 +26,7 @@ requirements:
     - clangdev                               # [not osx and build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    # from README.md
-    - rust >=1.46
+    - {{ compiler('rust') }}
     - cargo-bundle-licenses
   host:
     - make
