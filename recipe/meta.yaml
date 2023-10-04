@@ -57,7 +57,7 @@ test:
     - pip
     - pytest-cov
     - ruamel_yaml
-    - sqlalchemy
+    - sqlalchemy >=1.4.0
 
 about:
   home: https://github.com/osohq/oso
