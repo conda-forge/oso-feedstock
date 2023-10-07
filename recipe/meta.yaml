@@ -26,8 +26,7 @@ requirements:
     - clangdev                               # [not osx and build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    # from README.md
-    - rust >=1.73                            # [win]
+    - rust >=1.73.0
     - cargo-bundle-licenses
   host:
     - make
