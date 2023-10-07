@@ -27,7 +27,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     # from README.md
-    - rust >=1.46
+    - rust >=1.73                            # [win]
     - cargo-bundle-licenses
   host:
     - make
