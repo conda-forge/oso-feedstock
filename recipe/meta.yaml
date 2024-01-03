@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/osohq/oso/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: ead528c9360643be51b61b19af4bec077ba44b6db78cfed6228588a2413250e3
+  sha256: 31e1f5f2b40efd57dcec68c554a31eb2981657cb64477ded5ac7de85d6f80749
   patches:
     - 0000-no-pip-install-makefile.patch
 
