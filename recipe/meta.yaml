@@ -60,10 +60,6 @@ test:
     - pytest-cov
     - ruamel_yaml
     - sqlalchemy
-    # not strictly required to test, just verifying solveability
-    - psycopg2
-    - cryptography
-    - libpq 15.*
 
 about:
   home: https://github.com/osohq/oso
