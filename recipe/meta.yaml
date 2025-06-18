@@ -23,6 +23,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - make                                   # [build_platform != target_platform]
     - python                                 # [build_platform != target_platform]
+    - setuptools                             # [build_platform != target_platform]
     - clangdev                               # [not osx and build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
@@ -37,6 +38,7 @@ requirements:
     - openssl
     - python
     - pip
+    - setuptools
   run:
     - python
     - {{ cffi_version }}
