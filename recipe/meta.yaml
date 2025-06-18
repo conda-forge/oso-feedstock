@@ -59,7 +59,7 @@ test:
     - mypy
     - pip
     - pytest-cov
-    - ruamel_yaml
+    - ruamel.yaml
     - sqlalchemy
 
 about:
