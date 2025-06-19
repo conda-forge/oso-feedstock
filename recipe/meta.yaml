@@ -28,9 +28,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    # from README.md
-    - rust >=1.46,<1.70
     - cargo-bundle-licenses
+    # from README.md
+    - rust >=1.46,<1.70                      # [win]
+    - {{ compiler("rust") }}                 # [unix]
   host:
     - {{ cffi_version }}
     - make
