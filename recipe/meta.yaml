@@ -13,7 +13,7 @@ source:
     - 0000-no-pip-install-makefile.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [aarch64 or ppc64le]
 
 requirements:
@@ -23,13 +23,15 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - make                                   # [build_platform != target_platform]
     - python                                 # [build_platform != target_platform]
+    - setuptools                             # [build_platform != target_platform]
     - clangdev                               # [not osx and build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    # from README.md
-    - rust >=1.46,<1.70
     - cargo-bundle-licenses
+    # from README.md
+    - rust >=1.46,<1.70                      # [win]
+    - {{ compiler("rust") }}                 # [unix]
   host:
     - {{ cffi_version }}
     - make
@@ -37,6 +39,7 @@ requirements:
     - openssl
     - python
     - pip
+    - setuptools
   run:
     - python
     - {{ cffi_version }}
@@ -59,14 +62,16 @@ test:
     - mypy
     - pip
     - pytest-cov
-    - ruamel_yaml
+    - ruamel.yaml
     - sqlalchemy
 
 about:
   home: https://github.com/osohq/oso
   summary: Oso is a batteries-included framework for building authorization in your application.
   license: Apache-2.0
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - languages/python/oso/THIRDPARTY.yml
   doc_url: https://docs.osohq.com
   dev_url: https://github.com/osohq/oso
 

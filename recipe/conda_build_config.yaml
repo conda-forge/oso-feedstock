@@ -1,0 +1,2 @@
+rust_compiler_version:  # [unix]
+  - "1.69"              # [unix]
