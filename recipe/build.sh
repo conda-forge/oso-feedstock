@@ -4,6 +4,9 @@ set -eux
 
 cargo build --release -p polar-c-api
 
+rm -rf target/release
+mv target/*/release target/release
+
 cd $SRC_DIR/languages/python/oso
 
 make build OSO_ENV=RELEASE
