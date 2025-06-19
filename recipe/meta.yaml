@@ -14,7 +14,7 @@ source:
 
 build:
   number: 3
-  skip: true  # [(aarch64 or ppc64le) or (win and py39)]
+  skip: true  # [(aarch64 or ppc64le) or (win and py<310)]
 
 requirements:
   build:
